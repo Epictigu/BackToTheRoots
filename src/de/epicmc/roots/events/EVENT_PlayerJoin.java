@@ -12,18 +12,20 @@ import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
 
 import de.epicmc.roots.Main;
+import de.epicmc.roots.manager.FlagManager;
+import de.epicmc.roots.utils.FlagType;
 
 public class EVENT_PlayerJoin implements Listener{
 	
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent e){
-		if(Main.DISABLE_COOLDOWN){
+		if(FlagManager.flagState.get(FlagType.DISABLE_COOLDOWN)){
 			e.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(32D);
 		} else {
 			e.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4D);
 		}
 		
-		if(Main.DISABLE_OFF_HAND){
+		if(FlagManager.flagState.get(FlagType.DISABLE_OFF_HAND)){
 			ItemStack item = e.getPlayer().getInventory().getItemInOffHand();
 			if(item != null){
 				e.getPlayer().getInventory().setItemInOffHand(null);
@@ -34,7 +36,7 @@ public class EVENT_PlayerJoin implements Listener{
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
-				if(Main.DISABLE_PLAYER_COLLIDE){
+				if(FlagManager.flagState.get(FlagType.DISABLE_PLAYER_COLLIDE)){
 					Scoreboard sb = e.getPlayer().getScoreboard();
 					
 					if(sb.getEntryTeam(e.getPlayer().getName()) != null){

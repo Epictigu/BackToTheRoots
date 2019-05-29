@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import de.epicmc.roots.Main;
+import de.epicmc.roots.manager.InventoryManager;
 
 public class COMMAND_BTTR implements CommandExecutor{
 
@@ -17,7 +18,7 @@ public class COMMAND_BTTR implements CommandExecutor{
 		}
 		
 		if(sender.hasPermission("bttr.command")){
-			((Player)sender).openInventory(Main.flagInv);
+			((Player)sender).openInventory(InventoryManager.flagInv);
 		} else {
 			sender.sendMessage("§8[§6BTTR§8] §7You need the permission §e\"bttr.command\" §7for this.");
 		}

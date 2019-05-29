@@ -9,6 +9,8 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.ItemStack;
 
 import de.epicmc.roots.Main;
+import de.epicmc.roots.manager.FlagManager;
+import de.epicmc.roots.utils.FlagType;
 
 public class EVENT_PlayerChangedWorld implements Listener{
 	
@@ -18,13 +20,13 @@ public class EVENT_PlayerChangedWorld implements Listener{
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
-				if(Main.DISABLE_COOLDOWN){
+				if(FlagManager.flagState.get(FlagType.DISABLE_COOLDOWN)){
 					p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(32D);
 				} else {
 					p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4D);
 				}
 				
-				if(Main.DISABLE_OFF_HAND){
+				if(FlagManager.flagState.get(FlagType.DISABLE_OFF_HAND)){
 					ItemStack item = p.getInventory().getItemInOffHand();
 					if(item != null){
 						p.getInventory().setItemInOffHand(null);
