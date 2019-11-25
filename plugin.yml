@@ -1,6 +1,5 @@
 name: BackToTheRoots
-version: 1.13.1
-api-version: 1.14
+version: 1.14
 author: Tigusa
 main: de.epicmc.roots.Main
 commands:

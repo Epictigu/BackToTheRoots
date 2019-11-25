@@ -70,11 +70,11 @@ public class EVENT_InventoryClick implements Listener{
 							
 							if(type == Material.BOOK){
 								p.openInventory(InventoryManager.flagInvMain);
-							} else if(type == Material.CRAFTING_TABLE){
+							} else if(type.toString().contains("CRAFTING")){
 								p.openInventory(InventoryManager.flagInvRecipe);
 							} else if(type == Material.BARRIER){
 								p.openInventory(InventoryManager.flagInv);
-							} else if(type == Material.GREEN_TERRACOTTA || type == Material.RED_TERRACOTTA){
+							} else if(type.toString().contains("TERRACOTTA") || type.toString().contains("CLAY")){
 								p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1F, 1F);
 								
 								String name = ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
@@ -112,16 +112,29 @@ public class EVENT_InventoryClick implements Listener{
 			inv = InventoryManager.flagInvRecipe;
 		}
 		
-		Material color;
-		if(flag){
-			name = "§a" + name;
-			color = Material.GREEN_TERRACOTTA;
+		if(Main.version >=13) {
+			Material color;
+			if(flag){
+				name = "§a" + name;
+				color = Material.getMaterial("GREEN_TERRACOTTA");
+			} else {
+				name = "§c" + name;
+				color = Material.getMaterial("RED_TERRACOTTA");
+			}
+			
+			inv.setItem(slot, new ItemBuilder(color).addDisplayName(name).buildItem());
 		} else {
-			name = "§c" + name;
-			color = Material.RED_TERRACOTTA;
+			int color;
+			if(flag){
+				name = "§a" + name;
+				color = 13;
+			} else {
+				name = "§c" + name;
+				color = 14;
+			}
+			
+			inv.setItem(slot, new ItemBuilder(Material.getMaterial("STAINED_CLAY")).setData(color).addDisplayName(name).buildItem());
 		}
-		
-		inv.setItem(slot, new ItemBuilder(color).addDisplayName(name).buildItem());
 	}
 	
 }

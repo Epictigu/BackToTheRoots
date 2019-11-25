@@ -25,12 +25,18 @@ import de.epicmc.roots.events.EVENT_PlayerQuit;
 public class Main extends JavaPlugin{
 	
 	public static Plugin instance;
+	public static int version;
 	
 	public void onEnable(){
+		//Checking for current spigot version, so that multiple versions can be supported
+		String packageName = getServer().getClass().getPackage().getName();
+		version = Integer.parseInt(packageName.substring(packageName.lastIndexOf(".") + 1).split("_")[1]);
+		
 		System.out.println(" ");
 		System.out.println("[BTTR] Loading plugin ...");
 		instance = this;
 		
+		//Init of both Inventory and Config
 		InventoryManager.initializeInventories();
 		ConfigManager.initializeConfig();
 		
@@ -56,6 +62,7 @@ public class Main extends JavaPlugin{
 		
 		EVENT_PlayerJoin join = new EVENT_PlayerJoin();
 		
+		//Run onJoin for everyone that is on the server, in case "/reload" was used
 		for(Player p : Bukkit.getOnlinePlayers()){
 			join.onJoin(new PlayerJoinEvent(p, ""));
 		}

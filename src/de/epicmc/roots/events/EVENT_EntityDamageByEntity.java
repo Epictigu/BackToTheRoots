@@ -15,11 +15,11 @@ public class EVENT_EntityDamageByEntity implements Listener{
 			
 			Material mat = p.getInventory().getItemInMainHand().getType();
 			
-			if(mat == Material.WOODEN_AXE){
+			if(mat.toString().contains("AXE") && mat.toString().contains("WOOD")){
 				e.setDamage(e.getDamage() / 2.3333D);
 			} else if(mat == Material.STONE_AXE){
 				e.setDamage(e.getDamage() / 2.25);
-			} else if(mat == Material.GOLDEN_AXE){
+			} else if(mat.toString().contains("AXE") && mat.toString().contains("GOLD")){
 				e.setDamage(e.getDamage() / 2.3333D);
 			} else if(mat == Material.IRON_AXE){
 				e.setDamage(e.getDamage() / 1.8);

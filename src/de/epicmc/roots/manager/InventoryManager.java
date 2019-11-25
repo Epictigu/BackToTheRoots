@@ -6,6 +6,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import de.epicmc.roots.Main;
 import de.epicmc.roots.utils.DisableType;
 import de.epicmc.roots.utils.FlagType;
 import de.epicmc.roots.utils.ItemBuilder;
@@ -28,7 +29,12 @@ public class InventoryManager {
 		flagInvMain = Bukkit.createInventory(customInventoryHolder, 45, "§6BackToTheRoots");
 		flagInvRecipe = Bukkit.createInventory(customInventoryHolder, 36, "§6BackToTheRoots");
 		
-		ItemStack background = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).addDisplayName("§0 ").buildItem();
+		ItemStack background;
+		if(Main.version >= 13) {
+			background = new ItemBuilder(Material.valueOf("BLACK_STAINED_GLASS_PANE")).addDisplayName("§0 ").buildItem();
+		} else {
+			background = new ItemBuilder(Material.getMaterial("STAINED_GLASS_PANE")).setData(15).addDisplayName("§0 ").buildItem();
+		}
 		
 		for(int i = 0; i < 45; i++){
 			if(i < 27){
@@ -42,7 +48,11 @@ public class InventoryManager {
 		}
 		
 		flagInv.setItem(11, new ItemBuilder(Material.BOOK).addDisplayName("§7Disable general things.").buildItem());
-		flagInv.setItem(15, new ItemBuilder(Material.CRAFTING_TABLE).addDisplayName("§7Disable crafting-recipes.").buildItem());
+		if(Main.version >= 13) {
+			flagInv.setItem(15, new ItemBuilder(Material.getMaterial("CRAFTING_TABLE")).addDisplayName("§7Disable crafting-recipes.").buildItem());
+		} else {
+			flagInv.setItem(15, new ItemBuilder(Material.getMaterial("WORKBENCH")).addDisplayName("§7Disable crafting-recipes.").buildItem());
+		}
 		
 		ItemStack cancel = new ItemBuilder(Material.BARRIER).addDisplayName("§7Back").buildItem();
 		
@@ -75,17 +85,30 @@ public class InventoryManager {
 		}
 		
 		String name = type.itemName;
-		Material color;
 		
-		if(FlagManager.flagState.get(type)){
-			name = "§a" + name;
-			color = Material.GREEN_TERRACOTTA;
+		if(Main.version >=13) {
+			Material color;
+			if(FlagManager.flagState.get(type)){
+				name = "§a" + name;
+				color = Material.getMaterial("GREEN_TERRACOTTA");
+			} else {
+				name = "§c" + name;
+				color = Material.getMaterial("RED_TERRACOTTA");
+			}
+			
+			inv.setItem(slot, new ItemBuilder(color).addDisplayName(name).buildItem());
 		} else {
-			name = "§c" + name;
-			color = Material.RED_TERRACOTTA;
+			int color;
+			if(FlagManager.flagState.get(type)){
+				name = "§a" + name;
+				color = 13;
+			} else {
+				name = "§c" + name;
+				color = 14;
+			}
+			
+			inv.setItem(slot, new ItemBuilder(Material.getMaterial("STAINED_CLAY")).setData(color).addDisplayName(name).buildItem());
 		}
-		
-		inv.setItem(slot, new ItemBuilder(color).addDisplayName(name).buildItem());
 	}
 	
 }

@@ -19,11 +19,7 @@ public class EVENT_PlayerInteract implements Listener{
 				if(e.getClickedBlock().getType() == Material.GRASS){
 					Material mat = e.getPlayer().getInventory().getItemInMainHand().getType();
 					
-					if(mat == Material.DIAMOND_SHOVEL
-							|| mat == Material.IRON_SHOVEL
-							|| mat == Material.STONE_SHOVEL
-							|| mat == Material.WOODEN_SHOVEL
-							|| mat == Material.GOLDEN_SHOVEL){
+					if(mat.toString().contains("SHOVEL") || mat.toString().contains("SPADE")){
 						e.setCancelled(true);
 					}
 				}

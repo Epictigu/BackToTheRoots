@@ -16,6 +16,7 @@ public class ItemBuilder {
 	
 	private Material material;
 	private int amount = 1;
+	private byte data = 0;
 	
 	private boolean displayname_used = false;
 	private String displayname = "";
@@ -39,10 +40,10 @@ public class ItemBuilder {
 		return this;
 	}
 	
-	/*public ItemBuilder setData(int data){
+	public ItemBuilder setData(int data){
 		this.data = (byte)data;
 		return this;
-	}*/
+	}
 	
 	public ItemBuilder addDisplayName(String displayname){
 		this.displayname_used = true;
@@ -75,7 +76,12 @@ public class ItemBuilder {
 	}
 	
 	public ItemStack buildItem(){
-		ItemStack is = new ItemStack(material, amount);
+		ItemStack is;
+		if(data == 0) {
+			is = new ItemStack(material, amount);
+		} else {
+			is = new ItemStack(material, amount, data);
+		}
 		is.addUnsafeEnchantments(enchantment);
 		ItemMeta ism = is.getItemMeta();
 		if(displayname_used){
