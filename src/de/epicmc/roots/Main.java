@@ -8,16 +8,11 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.epicmc.roots.commands.COMMAND_BTTR;
-import de.epicmc.roots.events.EVENT_CreatureSpawn;
-import de.epicmc.roots.events.EVENT_EntityDamageByEntity;
-import de.epicmc.roots.events.EVENT_EntityRegainHealth;
-import de.epicmc.roots.events.EVENT_FoodBarChange;
 import de.epicmc.roots.events.EVENT_InventoryClick;
 import de.epicmc.roots.events.EVENT_PlayerChangedWorld;
-import de.epicmc.roots.events.EVENT_PlayerInteract;
-import de.epicmc.roots.events.EVENT_PlayerSwapHandItems;
-import de.epicmc.roots.events.EVENT_PrepareItemCraft;
+import de.epicmc.roots.manager.CollisionManager;
 import de.epicmc.roots.manager.ConfigManager;
+import de.epicmc.roots.manager.FlagManager;
 import de.epicmc.roots.manager.InventoryManager;
 import de.epicmc.roots.events.EVENT_PlayerJoin;
 import de.epicmc.roots.events.EVENT_PlayerQuit;
@@ -39,6 +34,8 @@ public class Main extends JavaPlugin{
 		//Init of both Inventory and Config
 		InventoryManager.initializeInventories();
 		ConfigManager.initializeConfig();
+		FlagManager.setupEvents();
+		CollisionManager.initializeCollisionScheduler();
 		
 		registerEvents();
 		Bukkit.getPluginCommand("bttr").setExecutor(new COMMAND_BTTR());
@@ -52,13 +49,8 @@ public class Main extends JavaPlugin{
 	private void registerEvents() {
 		PluginManager pm = Bukkit.getPluginManager();
 		
-		pm.registerEvents(new EVENT_CreatureSpawn(), this);
-		pm.registerEvents(new EVENT_EntityDamageByEntity(), this);
-		pm.registerEvents(new EVENT_EntityRegainHealth(), this);
-		pm.registerEvents(new EVENT_FoodBarChange(), this);
 		pm.registerEvents(new EVENT_InventoryClick(), this);
 		pm.registerEvents(new EVENT_PlayerChangedWorld(), this);
-		pm.registerEvents(new EVENT_PlayerInteract(), this);
 		
 		EVENT_PlayerJoin join = new EVENT_PlayerJoin();
 		
@@ -69,8 +61,6 @@ public class Main extends JavaPlugin{
 		
 		pm.registerEvents(join, this);
 		pm.registerEvents(new EVENT_PlayerQuit(), this);
-		pm.registerEvents(new EVENT_PlayerSwapHandItems(), this);
-		pm.registerEvents(new EVENT_PrepareItemCraft(), this);
 	}
 	
 }

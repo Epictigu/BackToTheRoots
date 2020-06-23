@@ -1,4 +1,4 @@
-package de.epicmc.roots.events;
+package de.epicmc.roots.events.flags;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class EVENT_EntityDamageByEntity implements Listener{
+public class FLAG_New_Damage implements Listener{
 	
 	@EventHandler
 	public void onDamage(final EntityDamageByEntityEvent e){

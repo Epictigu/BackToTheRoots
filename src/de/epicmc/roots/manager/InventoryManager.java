@@ -31,9 +31,9 @@ public class InventoryManager {
 		
 		ItemStack background;
 		if(Main.version >= 13) {
-			background = new ItemBuilder(Material.valueOf("BLACK_STAINED_GLASS_PANE")).addDisplayName("§0 ").buildItem();
+			background = new ItemBuilder(Enum.valueOf(Material.class, "BLACK_STAINED_GLASS_PANE")).addDisplayName("§0 ").buildItem();
 		} else {
-			background = new ItemBuilder(Material.getMaterial("STAINED_GLASS_PANE")).setData(15).addDisplayName("§0 ").buildItem();
+			background = new ItemBuilder(Enum.valueOf(Material.class, "STAINED_GLASS_PANE")).setData(15).addDisplayName("§0 ").buildItem();
 		}
 		
 		for(int i = 0; i < 45; i++){
@@ -49,9 +49,9 @@ public class InventoryManager {
 		
 		flagInv.setItem(11, new ItemBuilder(Material.BOOK).addDisplayName("§7Disable general things.").buildItem());
 		if(Main.version >= 13) {
-			flagInv.setItem(15, new ItemBuilder(Material.getMaterial("CRAFTING_TABLE")).addDisplayName("§7Disable crafting-recipes.").buildItem());
+			flagInv.setItem(15, new ItemBuilder(Enum.valueOf(Material.class, "CRAFTING_TABLE")).addDisplayName("§7Disable crafting-recipes.").buildItem());
 		} else {
-			flagInv.setItem(15, new ItemBuilder(Material.getMaterial("WORKBENCH")).addDisplayName("§7Disable crafting-recipes.").buildItem());
+			flagInv.setItem(15, new ItemBuilder(Enum.valueOf(Material.class, "WORKBENCH")).addDisplayName("§7Disable crafting-recipes.").buildItem());
 		}
 		
 		ItemStack cancel = new ItemBuilder(Material.BARRIER).addDisplayName("§7Back").buildItem();
@@ -90,10 +90,10 @@ public class InventoryManager {
 			Material color;
 			if(FlagManager.flagState.get(type)){
 				name = "§a" + name;
-				color = Material.getMaterial("GREEN_TERRACOTTA");
+				color = Enum.valueOf(Material.class, "GREEN_TERRACOTTA");
 			} else {
 				name = "§c" + name;
-				color = Material.getMaterial("RED_TERRACOTTA");
+				color = Enum.valueOf(Material.class, "RED_TERRACOTTA");
 			}
 			
 			inv.setItem(slot, new ItemBuilder(color).addDisplayName(name).buildItem());
@@ -107,7 +107,7 @@ public class InventoryManager {
 				color = 14;
 			}
 			
-			inv.setItem(slot, new ItemBuilder(Material.getMaterial("STAINED_CLAY")).setData(color).addDisplayName(name).buildItem());
+			inv.setItem(slot, new ItemBuilder(Enum.valueOf(Material.class, "STAINED_CLAY")).setData(color).addDisplayName(name).buildItem());
 		}
 	}
 	

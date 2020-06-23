@@ -16,7 +16,7 @@ public class CollisionManager {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
-				if(FlagManager.flagState.get(FlagType.DISABLE_PLAYER_COLLIDE)){
+				if(FlagManager.flagState.get(FlagType.DISABLE_PLAYER_COLLIDE) == true){
 					for(Player p : Bukkit.getOnlinePlayers()){
 						if(p.getScoreboard() != null){
 							Scoreboard sb = p.getScoreboard();
@@ -36,7 +36,7 @@ public class CollisionManager {
 				Scoreboard sb = pl.getScoreboard();
 				
 				if(sb.getEntryTeam(pl.getName()) != null){
-					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.ALWAYS);
+					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
 				}
 			}
 		} else {
@@ -44,7 +44,7 @@ public class CollisionManager {
 				Scoreboard sb = pl.getScoreboard();
 				
 				if(sb.getEntryTeam(pl.getName()) != null){
-					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
+					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.ALWAYS);
 				} else {
 					Team t = null;
 					

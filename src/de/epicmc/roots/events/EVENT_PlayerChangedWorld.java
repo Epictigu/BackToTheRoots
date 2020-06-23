@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.inventory.ItemStack;
 
 import de.epicmc.roots.Main;
 import de.epicmc.roots.manager.FlagManager;
@@ -24,14 +23,6 @@ public class EVENT_PlayerChangedWorld implements Listener{
 					p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(32D);
 				} else {
 					p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4D);
-				}
-				
-				if(FlagManager.flagState.get(FlagType.DISABLE_OFF_HAND)){
-					ItemStack item = p.getInventory().getItemInOffHand();
-					if(item != null){
-						p.getInventory().setItemInOffHand(null);
-						p.getInventory().addItem(item);
-					}
 				}
 			}
 		}, 2);

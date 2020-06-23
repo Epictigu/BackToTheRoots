@@ -62,7 +62,7 @@ public class ConfigManager {
 		//Load values from config
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(configFile);
 		for(FlagType cfgV : FlagType.values()) {
-			if(cfgV.minVersion >= Main.version) {
+			if(cfgV.minVersion <= Main.version) {
 				FlagManager.flagState.put(cfgV, cfg.getBoolean(cfgV.configPath));
 				InventoryManager.addDisable(cfgV);
 			}
