@@ -54,7 +54,8 @@ public class EVENT_InventoryClick implements Listener {
 								HandlerList.unregisterAll(flagType.eventListener);
 							} else {
 								FlagManager.flagState.put(flagType, true);
-								Bukkit.getPluginManager().registerEvents(flagType.eventListener, Main.instance);
+								if(flagType.eventListener != null)
+									Bukkit.getPluginManager().registerEvents(flagType.eventListener, Main.instance);
 							}
 							ConfigManager.updateConfig();
 							changeFlag(flagType.disableType, e.getSlot(), name, FlagManager.flagState.get(flagType));
