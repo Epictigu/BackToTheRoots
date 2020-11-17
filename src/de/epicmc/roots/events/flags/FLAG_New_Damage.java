@@ -6,6 +6,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import de.epicmc.roots.manager.FlagManager;
+import de.epicmc.roots.utils.FlagType;
+
 public class FLAG_New_Damage implements Listener{
 	
 	@EventHandler
@@ -13,18 +16,20 @@ public class FLAG_New_Damage implements Listener{
 		if(e.getDamager() instanceof Player){
 			Player p = (Player)e.getDamager();
 			
-			Material mat = p.getInventory().getItemInMainHand().getType();
-			
-			if(mat.toString().contains("AXE") && mat.toString().contains("WOOD")){
-				e.setDamage(e.getDamage() / 2.3333D);
-			} else if(mat == Material.STONE_AXE){
-				e.setDamage(e.getDamage() / 2.25);
-			} else if(mat.toString().contains("AXE") && mat.toString().contains("GOLD")){
-				e.setDamage(e.getDamage() / 2.3333D);
-			} else if(mat == Material.IRON_AXE){
-				e.setDamage(e.getDamage() / 1.8);
-			} else if(mat == Material.DIAMOND_AXE){
-				e.setDamage(e.getDamage() / 1.5);
+			if(FlagManager.checkFlag(FlagType.DISABLE_NEW_DAMAGE, p)) {
+				Material mat = p.getInventory().getItemInMainHand().getType();
+				
+				if(mat.toString().contains("AXE") && mat.toString().contains("WOOD")){
+					e.setDamage(e.getDamage() / 2.3333D);
+				} else if(mat == Material.STONE_AXE){
+					e.setDamage(e.getDamage() / 2.25);
+				} else if(mat.toString().contains("AXE") && mat.toString().contains("GOLD")){
+					e.setDamage(e.getDamage() / 2.3333D);
+				} else if(mat == Material.IRON_AXE){
+					e.setDamage(e.getDamage() / 1.8);
+				} else if(mat == Material.DIAMOND_AXE){
+					e.setDamage(e.getDamage() / 1.5);
+				}
 			}
 		}
 	}

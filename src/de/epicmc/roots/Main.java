@@ -1,8 +1,6 @@
 package de.epicmc.roots;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,11 +32,14 @@ public class Main extends JavaPlugin{
 		//Init of both Inventory and Config
 		InventoryManager.initializeInventories();
 		ConfigManager.initializeConfig();
+		InventoryManager.updateWorldInventories();
 		FlagManager.setupEvents();
 		CollisionManager.initializeCollisionScheduler();
 		
 		registerEvents();
 		Bukkit.getPluginCommand("bttr").setExecutor(new COMMAND_BTTR());
+		
+		FlagManager.updateNoCooldown();
 		
 		System.out.println("[BTTR] Plugin successfully loaded.");
 		System.out.println(" ");
@@ -52,14 +53,7 @@ public class Main extends JavaPlugin{
 		pm.registerEvents(new EVENT_InventoryClick(), this);
 		pm.registerEvents(new EVENT_PlayerChangedWorld(), this);
 		
-		EVENT_PlayerJoin join = new EVENT_PlayerJoin();
-		
-		//Run onJoin for everyone that is on the server, in case "/reload" was used
-		for(Player p : Bukkit.getOnlinePlayers()){
-			join.onJoin(new PlayerJoinEvent(p, ""));
-		}
-		
-		pm.registerEvents(join, this);
+		pm.registerEvents(new EVENT_PlayerJoin(), this);
 		pm.registerEvents(new EVENT_PlayerQuit(), this);
 	}
 	

@@ -19,7 +19,7 @@ public class EVENT_PlayerChangedWorld implements Listener{
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
-				if(FlagManager.flagState.get(FlagType.DISABLE_COOLDOWN)){
+				if(FlagManager.checkFlag(FlagType.DISABLE_COOLDOWN, p)){
 					p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(32D);
 				} else {
 					p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4D);

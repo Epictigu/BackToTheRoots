@@ -22,7 +22,7 @@ public class FLAG_Collide implements Listener{
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
-				if(FlagManager.flagState.get(FlagType.DISABLE_PLAYER_COLLIDE)){
+				if(FlagManager.checkFlag(FlagType.DISABLE_PLAYER_COLLIDE, p)){
 					Scoreboard sb = p.getScoreboard();
 					
 					if(sb.getEntryTeam(p.getName()) != null){

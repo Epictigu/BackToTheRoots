@@ -2,7 +2,9 @@ package de.epicmc.roots.manager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
+import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import de.epicmc.roots.Main;
@@ -20,7 +22,12 @@ public class ConfigManager {
 			mainFolder.mkdir();
 		}
 		
-		//Creation or updating of config
+		File worldFolder = new File("plugins/BackToTheRoots/worlds");
+		if(!worldFolder.exists()) {
+			worldFolder.mkdir();
+		}
+		
+		//Creating or updating of the main config
 		File configFile = new File("plugins/BackToTheRoots/config.yml");
 		if(!(configFile.exists())){
 			System.out.println("[BTTR] No config found.");
@@ -66,6 +73,33 @@ public class ConfigManager {
 				FlagManager.flagState.put(cfgV, cfg.getBoolean(cfgV.configPath));
 				InventoryManager.addDisable(cfgV);
 			}
+		}
+	}
+	
+	public static void saveWorldConfig(World w) {
+		File f = new File("plugins/BackToTheRoots/worlds/" + w.getName() + ".yml");
+		Map<FlagType, Boolean> state = FlagManager.flagStateWorld.get(w);
+		if(f.exists())
+			f.delete();
+		if(state == null) {
+			return;
+		} else if(state.isEmpty()) {
+			return;
+		}
+		try {
+			f.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		YamlConfiguration cfg = new YamlConfiguration();
+		for(FlagType fT : state.keySet()) {
+			cfg.set(fT.configPath, state.get(fT));
+		}
+		try {
+			cfg.save(f);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

@@ -75,6 +75,7 @@ public class ItemBuilder {
 		return this;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public ItemStack buildItem(){
 		ItemStack is;
 		if(data == 0) {
