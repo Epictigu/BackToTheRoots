@@ -15,6 +15,8 @@ public class EVENT_PlayerChangedWorld implements Listener{
 	
 	@EventHandler
 	public void onWorldChange(PlayerChangedWorldEvent e) {
+		if(Main.version < FlagType.DISABLE_COOLDOWN.minVersion)
+			return;
 		final Player p = e.getPlayer();
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 			@Override

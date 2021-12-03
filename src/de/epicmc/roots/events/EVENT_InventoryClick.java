@@ -68,13 +68,13 @@ public class EVENT_InventoryClick implements Listener {
 							}
 						}
 
-						if (FlagManager.flagState.get(flagType)) {
+						if (FlagManager.checkFlag(flagType, p)) {
 							FlagManager.flagState.put(flagType, false);
 						} else {
 							FlagManager.flagState.put(flagType, true);
 						}
 						ConfigManager.updateConfig();
-						changeFlag(flagType.disableType, e.getSlot(), name, FlagManager.flagState.get(flagType));
+						changeFlag(flagType.disableType, e.getSlot(), name, FlagManager.checkFlag(flagType, p));
 
 						if (flagType == FlagType.DISABLE_COOLDOWN)
 							FlagManager.updateNoCooldown();

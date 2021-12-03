@@ -13,7 +13,7 @@ import de.epicmc.roots.utils.FlagType;
 public class ConfigManager {
 	
 	public static void initializeConfig() {
-		System.out.println("[BTTR] Loading config ...");
+		Main.instance.getLogger().info("[BTTR] Loading config ...");
 		String version = Main.instance.getDescription().getVersion();
 		
 		//Creation of main folder if needed
@@ -30,8 +30,8 @@ public class ConfigManager {
 		//Creating or updating of the main config
 		File configFile = new File("plugins/BackToTheRoots/config.yml");
 		if(!(configFile.exists())){
-			System.out.println("[BTTR] No config found.");
-			System.out.println("[BTTR] Creating new one ...");
+			Main.instance.getLogger().info("[BTTR] No config found.");
+			Main.instance.getLogger().info("[BTTR] Creating new one ...");
 			try {
 				configFile.createNewFile();
 				YamlConfiguration cfg = new YamlConfiguration();
@@ -48,7 +48,7 @@ public class ConfigManager {
 			
 			//Checking if config version is different than plugin version
 			if(!(cfg.getString("CONFIG_VERSION").equalsIgnoreCase(version))){
-				System.out.println("[BTTR] Updating config ...");
+				Main.instance.getLogger().info("[BTTR] Updating config ...");
 				cfg.set("CONFIG_VERSION", version);
 				
 				//Set default value onto every missing flag
@@ -62,7 +62,7 @@ public class ConfigManager {
 					cfg.save(configFile);
 				} catch (IOException e) { e.printStackTrace(); }
 				
-				System.out.println("[BTTR] Update complete!");
+				Main.instance.getLogger().info("[BTTR] Update complete!");
 			}
 		}
 		

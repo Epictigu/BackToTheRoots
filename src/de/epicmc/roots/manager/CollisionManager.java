@@ -13,6 +13,8 @@ import de.epicmc.roots.utils.FlagType;
 public class CollisionManager {
 	
 	public static void initializeCollisionScheduler() {
+		if(Main.version < FlagType.DISABLE_PLAYER_COLLIDE.minVersion)
+			return;
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
@@ -31,6 +33,8 @@ public class CollisionManager {
 	}
 	
 	public static void updateCollisionRule() {
+		if(Main.version < FlagType.DISABLE_PLAYER_COLLIDE.minVersion)
+			return;
 		if(FlagManager.flagState.get(FlagType.DISABLE_PLAYER_COLLIDE)){
 			for(Player pl : Bukkit.getOnlinePlayers()){
 				Scoreboard sb = pl.getScoreboard();

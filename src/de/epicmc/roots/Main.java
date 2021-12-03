@@ -25,8 +25,8 @@ public class Main extends JavaPlugin{
 		String packageName = getServer().getClass().getPackage().getName();
 		version = Integer.parseInt(packageName.substring(packageName.lastIndexOf(".") + 1).split("_")[1]);
 		
-		System.out.println(" ");
-		System.out.println("[BTTR] Loading plugin ...");
+		getLogger().info("");
+		getLogger().info("[BTTR] Loading plugin ...");
 		instance = this;
 		
 		//Init of both Inventory and Config
@@ -41,8 +41,8 @@ public class Main extends JavaPlugin{
 		
 		FlagManager.updateNoCooldown();
 		
-		System.out.println("[BTTR] Plugin successfully loaded.");
-		System.out.println(" ");
+		getLogger().info("[BTTR] Plugin successfully loaded.");
+		getLogger().info(" ");
 	}
 	
 	

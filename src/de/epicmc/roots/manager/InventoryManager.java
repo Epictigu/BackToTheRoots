@@ -112,6 +112,8 @@ public class InventoryManager {
 			for(FlagType flag : FlagType.values()) {
 				if(flag.disableType == DisableType.RECIPE || flag == FlagType.DISABLE_PLAYER_COLLIDE)
 					continue;
+				if(Main.version < flag.minVersion)
+					continue;
 				addWorldDisable(inv, slot, flag, flagState);
 				slot++;
 				if(slot > 16 && slot < 19) {

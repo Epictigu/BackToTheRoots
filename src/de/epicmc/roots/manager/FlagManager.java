@@ -39,6 +39,9 @@ public class FlagManager {
 	}
 	
 	public static boolean checkFlag(FlagType type, Player p) {
+		if(type.minVersion > Main.version)
+			return false;
+		
 		return checkFlag(type, p.getWorld());
 	}
 	
