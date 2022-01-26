@@ -15,10 +15,10 @@ public class FLAG_Path_Make implements Listener{
 	public void onInteract(PlayerInteractEvent e) {
 		if(FlagManager.checkFlag(FlagType.DISABLE_PATH_MAKE, e.getPlayer())) {
 			if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-				if(e.getClickedBlock().getType() == Material.GRASS){
+				if(e.getClickedBlock().getType() == Material.GRASS_BLOCK){
 					Material mat = e.getPlayer().getInventory().getItemInMainHand().getType();
 					
-					if(mat.toString().contains("SHOVEL") || mat.toString().contains("SPADE")){
+					if(mat.toString().toUpperCase().contains("SHOVEL") || mat.toString().toUpperCase().contains("SPADE")){
 						e.setCancelled(true);
 					}
 				}

@@ -18,7 +18,7 @@ public enum FlagType {
 	
 	DISABLE_COOLDOWN(9, null, DisableType.GENERAL, "DISABLE.COOLDOWN", true, "Disable Cooldown"),
 	DISABLE_NEW_DAMAGE(9, new FLAG_New_Damage(), DisableType.GENERAL, "DISABLE.NEW_DAMAGE", true, "Disable New Damage"),
-	DISABLE_NEW_REGEN(9, new FLAG_New_Regen(), DisableType.GENERAL, "DISABLE.NEW_REGEN", true, "Disable New Regen"),
+	DISABLE_NEW_REGEN(9, new FLAG_New_Regen(), DisableType.GENERAL, "DISABLE.NEW_REGEN", false, "Disable New Regen"),
 	DISABLE_PATH_MAKE(9, new FLAG_Path_Make(), DisableType.GENERAL, "DISABLE.PATH_MAKE", false, "Disable Path Make"),
 	DISABLE_OFF_HAND(9, new FLAG_Off_Hand(), DisableType.GENERAL, "DISABLE.OFF_HAND", false, "Disable Off Hand"),
 	DISABLE_SKELETON_TRAP(9, new FLAG_Skeleton_Trap(), DisableType.GENERAL, "DISABLE.SKELETON_TRAP", false, "Disable Skeleton Trap"),

@@ -41,14 +41,6 @@ public class CollisionManager {
 				
 				if(sb.getEntryTeam(pl.getName()) != null){
 					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
-				}
-			}
-		} else {
-			for(Player pl : Bukkit.getOnlinePlayers()){
-				Scoreboard sb = pl.getScoreboard();
-				
-				if(sb.getEntryTeam(pl.getName()) != null){
-					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.ALWAYS);
 				} else {
 					Team t = null;
 					
@@ -60,6 +52,14 @@ public class CollisionManager {
 					
 					t.addEntry(pl.getName());
 					t.setOption(Option.COLLISION_RULE, OptionStatus.NEVER);
+				}
+			}
+		} else {
+			for(Player pl : Bukkit.getOnlinePlayers()){
+				Scoreboard sb = pl.getScoreboard();
+				
+				if(sb.getEntryTeam(pl.getName()) != null){
+					sb.getEntryTeam(pl.getName()).setOption(Option.COLLISION_RULE, OptionStatus.ALWAYS);
 				}
 			}
 		}
