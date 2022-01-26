@@ -5,6 +5,7 @@ import org.bukkit.event.Listener;
 import de.epicmc.roots.events.flags.FLAG_Chorus_Fruit;
 import de.epicmc.roots.events.flags.FLAG_Collide;
 import de.epicmc.roots.events.flags.FLAG_Endermite_On_Pearl;
+import de.epicmc.roots.events.flags.FLAG_Enderpearl_Cooldown;
 import de.epicmc.roots.events.flags.FLAG_New_Damage;
 import de.epicmc.roots.events.flags.FLAG_New_Regen;
 import de.epicmc.roots.events.flags.FLAG_Off_Hand;
@@ -25,6 +26,7 @@ public enum FlagType {
 	DISABLE_PLAYER_COLLIDE(9, new FLAG_Collide(), DisableType.GENERAL, "DISABLE.PLAYER_COLLIDE", false, "Disable Player Collide"),
 	DISABLE_CHORUS_FRUIT(9, new FLAG_Chorus_Fruit(), DisableType.GENERAL, "DISABLE.CHORUS_FRUIT", false, "Disable ChorusFruit"),
 	DISABLE_ENDERMITE_ON_PEARL(9, new FLAG_Endermite_On_Pearl(), DisableType.GENERAL, "DISABLE.ENDERMITE_ON_PEARL", false, "Disable Endermite on Enderpearl"),
+	DISABLE_ENDERPEARL_COOLDOWN(9, new FLAG_Enderpearl_Cooldown(), DisableType.GENERAL, "DISABLE.ENDERPEARL_COOLDOWN", false, "Disable Enderpearl Cooldown"),
 	
 	DISABLE_RECIPE_SHIELD(9, new FLAG_Recipe_Shield(), DisableType.RECIPE, "DISABLE_RECIPE.SHIELD", false, "Disable: Recipe Shield"),
 	DISABLE_RECIPE_END_CRYSTAL(9, new FLAG_Recipe_End_Crystal(), DisableType.RECIPE, "DISABLE_RECIPE.END_CRYSTAL", false, "Disable Recipe: End Crystal"),
